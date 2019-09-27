@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DevOps_APP.Views.CadastroPage"
+             BackgroundImage="image1Login.jpg">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Entry" x:Key="CadastroEntry">
+                <Setter Property="WidthRequest" Value="280"/>
+                <Setter Property="HorizontalOptions" Value="Center"/>
+                <Setter Property="PlaceholderColor" Value="#fcfcfc"/>
+                <Setter Property="FontAttributes" Value="Bold"/>
+            </Style>
+
+            <Style TargetType="DatePicker" x:Key="CadastroDatePicker">
+                <Setter Property="WidthRequest" Value="280"/>
+                <Setter Property="HorizontalOptions" Value="Center"/>
+                <Setter Property="TextColor" Value="#fcfcfc"/>
+                <Setter Property="FontAttributes" Value="Bold"/>
+            </Style>
+
+            <Style TargetType="Label" x:Key="FonteLogo">
+                <Setter Property="FontFamily" Value="{StaticResource LogoFont}"/>
+            </Style>
+
+            <Style TargetType="StackLayout" x:Key="CadastroLogo">
+                <Setter Property="Margin" Value="0,55,0,10"/>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+        <StackLayout>
+            <StackLayout Style="{StaticResource CadastroLogo}">
+                <Label x:Name="LogoName" Text="Places" HorizontalOptions="Center" FontSize="65" Style="{StaticResource FonteLogo}"/>
+            </StackLayout>
+
+            <StackLayout>
+                <Entry x:Name="NomeCadastro" Text="{Binding NomeCadastroValidacao, Mode=TwoWay}" Placeholder="Nome" Style="{StaticResource CadastroEntry}"/>
+                <Entry x:Name="SobrenomeCadastro" Text="{Binding SobrenomeCadastroValidacao, Mode=TwoWay}" Placeholder="Sobrenome"  Style="{StaticResource CadastroEntry}"/>
+                <Entry x:Name="MostrarDataEntry" Text="{Binding MostrarDataEntryValidacao}" Placeholder="Data de Nascimento" Style="{StaticResource CadastroEntry}"/>
+                <DatePicker x:Name="DataNascimentoCadastro" Date="{Binding DataNascimentoCadastroValidacao, Mode=TwoWay}" MinimumDate="{Binding DataMinimaNascimento}" MaximumDate="{Binding DataMaximaNascimento}" IsVisible="False" Style="{StaticResource CadastroDatePicker}"/>
+                <Entry x:Name="EmailCelularCadastro" Text="{Binding EmailCelularCadastroValidacao, Mode=TwoWay}" Placeholder="Email ou Celular" Style="{StaticResource CadastroEntry}"/>
+                <Entry x:Name="SenhaCadastro" Text="{Binding SenhaCadastroValidacao, Mode=TwoWay}" Placeholder="Senha" IsPassword="True" Style="{StaticResource CadastroEntry}"/>
+            </StackLayout>
+            
+            <StackLayout Margin="0,30,0,0">
+                <Button Text="Cadastrar-se" Command="{Binding FinalizarCadastroCommand}" WidthRequest="280" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="Center"/>
+            </StackLayout>
+
+            <StackLayout VerticalOptions="EndAndExpand">
+                <Label Text="Já possui uma conta? Entre agora!" TextColor="#e2e2e2" Margin="0,0,0,15" HorizontalTextAlignment="Center" VerticalOptions="EndAndExpand" FontSize="Small"/>
+                <StackLayout.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding PossuoUmaContaCommand}"/>
+                </StackLayout.GestureRecognizers>
+            </StackLayout>
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,15 @@
+Splash screen
+
+Basic - Basic - Sharpness -80
+
+Effect - Vintage- Hot Fudge- 60
+
+
+
+Effect - Tilt-Shift - Circular - size 40% da barra - blur intensity 60% - posicionar na diagonal da imagem blur vai no canto superio esquerdo e inferior direito
+
+
+
+
+
+	

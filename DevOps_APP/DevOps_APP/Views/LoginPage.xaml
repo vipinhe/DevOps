@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DevOps_APP.Views.LoginPage"
+             BackgroundImage="image1Login.jpg">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Entry" x:Key="LoginEntry">
+                <Setter Property="WidthRequest" Value="280"/>
+                <Setter Property="HorizontalOptions" Value="Center"/>
+                <Setter Property="PlaceholderColor" Value="#fcfcfc"/>
+                <Setter Property="FontAttributes" Value="Bold"/>
+            </Style>
+
+            <Style TargetType="StackLayout" x:Key="LoginLogo">
+                <Setter Property="Margin" Value="0,80,0,50"/>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+        <StackLayout>
+            <StackLayout Style="{StaticResource LoginLogo}">
+                <Label x:Name="LogoName" Text="Places" HorizontalOptions="Center" FontSize="65" FontFamily="{StaticResource LogoFont}"/>
+            </StackLayout>
+                
+            <StackLayout>
+                <Entry x:Name="EmailCelularAutenticacao" Text="{Binding EmailCelularAutenticacao, Mode=TwoWay}" Placeholder="Email ou Celular" Style="{StaticResource LoginEntry}"/>
+                <Entry x:Name="SenhaAutenticacao" Text="{Binding SenhaAutenticacao, Mode=TwoWay}" Placeholder="Senha" IsPassword="True" Style="{StaticResource LoginEntry}"/>
+            </StackLayout>
+
+            <StackLayout HorizontalOptions="End" Margin="0,0,50,10">
+                <Label Text="Esqueceu sua senha? Clique aqui" TextColor="#e2e2e2" HorizontalTextAlignment="End" FontSize="Small"/>
+                
+                <StackLayout.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding EsqueciSenhaCommand}"/>
+                </StackLayout.GestureRecognizers>
+            </StackLayout>
+
+            <StackLayout>
+                <Button Text="Entrar" Command="{Binding LoginCommand}" WidthRequest="280" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="Center"/>
+            </StackLayout>
+
+            <StackLayout VerticalOptions="EndAndExpand">
+                <Label Text="Novo por aqui? Cadastre-se" TextColor="#e2e2e2" Margin="0,0,0,15" HorizontalTextAlignment="Center" VerticalOptions="EndAndExpand" FontSize="Small"/>
+                <StackLayout.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding CadastrarSeCommand}"/>
+                </StackLayout.GestureRecognizers>
+            </StackLayout>
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

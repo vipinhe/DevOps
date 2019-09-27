@@ -1,0 +1,13 @@
+Splash screen
+
+Basic - Basic - Sharpness -150
+
+Effect - Greyscale - Cintrasted - 70
+
+Effect - Tilt-Shift - linear - size 40% da barra - blur intensity 80% - posicionar na diagonal da imagem blur vai no canto superio esquerdo e inferior direito
+
+
+
+
+
+	

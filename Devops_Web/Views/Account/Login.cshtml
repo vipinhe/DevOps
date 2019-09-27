@@ -1,0 +1,200 @@
+﻿@model LoginViewModel
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login - Places</title>
+
+    <environment include="Development">
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+        <link rel="stylesheet" href="~/css/site.css" />
+        <link rel="stylesheet" href="~/css/login-page.css" />
+    </environment>
+    <environment exclude="Development">
+        <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/css/bootstrap.min.css"
+              asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
+              asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
+        <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
+    </environment>
+</head>
+<body>
+    <div class="container body-content">
+        <div class="login-container">
+            <h1 class="logo-style logo-style-position">Places</h1>
+            <ul class="nav nav-fill nav-justified nav-tabs" id="myTab" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link nav-item-config-login @(Model.Cadastro.CadastroCheck == false ? "active" : "")" id="login-tab" data-toggle="tab" href="#Login" role="tab" aria-controls="home" aria-selected="true">Entrar</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link nav-item-config-cadastro @(Model.Cadastro.CadastroCheck == true ? "active" : "")" id="cadastro-tab" data-toggle="tab" href="#Cadastro" role="tab" aria-controls="profile" aria-selected="false">Cadastrar</a>
+                </li>
+            </ul>
+            <div class="jumbotron-login">
+                <div class="tab-content" id="myTabContent">
+                    <div class="tab-pane fade @(Model.Cadastro.CadastroCheck == false ? "show active" : "")" id="Login" role="tabpanel" aria-labelledby="login-tab">
+                        <!--Login Form-->
+                        <form method="post" asp-controller="Account" asp-action="ValidarLogin" asp-route-returnurl="">
+                            <div asp-validation-summary="ModelOnly"></div>
+                            <input asp-for="Login.LoginCheck" type="checkbox" hidden checked />
+                            <span class="text-success">@ViewBag.CadastroSucesso<br></span>
+
+                            <div class="form-group">
+                                <label asp-for="Login.EmailouCelular"></label>
+                                <input asp-for="Login.EmailouCelular" type="text" class="form-control" id="EmailCelularLogin" aria-describedby="emailHelp" placeholder="Digite seu email ou celular">
+                                <span asp-validation-for="Login.EmailouCelular" class="text-danger" id="EmailouCelularWarning"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Login.Senha"></label>
+                                <input asp-for="Login.Senha" type="password" class="form-control" id="SenhaLogin" placeholder="Digite sua senha">
+                                <span asp-validation-for="Login.Senha" class="text-danger" id="SenhaWarning"></span>
+                            </div>
+                            <div class="form-group form-check">
+                                <input asp-for="Login.LembrarMe" type="checkbox" class="form-check-input" id="LembrarMe" style="margin-bottom:-3px;">
+                                <label class="form-check-label" asp-for="Login.LembrarMe"></label>
+                            </div>
+                            <button id="btnSubmit" type="submit" class="btn btn-color-secundaria btn-block">Entrar</button>
+                        </form>
+                    </div>
+                    <div class="tab-pane fade @(Model.Cadastro.CadastroCheck == true ? "show active" : "")" id="Cadastro" role="tabpanel" aria-labelledby="cadastro-tab">
+                        <!--Cadastro Form-->
+                        <form method="post" asp-controller="Account" asp-action="Cadastro" asp-route-returnurl="">
+                            <div asp-validation-summary="ModelOnly"></div>
+                            <input asp-for="Cadastro.CadastroCheck" type="checkbox" hidden checked />                            
+
+                            <div class="form-group">
+                                <label asp-for="Cadastro.Nome"></label>
+                                <input asp-for="Cadastro.Nome" type="text" class="form-control" id="CadastroNome" placeholder="Digite seu nome">
+                                <span asp-validation-for="Cadastro.Nome" class="text-danger" id="NomeCadastroWarning"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Cadastro.Sobrenome">Sobrenome</label>
+                                <input asp-for="Cadastro.Sobrenome" type="text" class="form-control" id="CadastroSobrenome" placeholder="Digite seu sobrenome">
+                                <span asp-validation-for="Cadastro.Sobrenome" class="text-danger" id="SobrenomeCadastroWarning"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Cadastro.DataNascimento">Data de Nascimento</label>
+                                <input asp-for="Cadastro.DataNascimento" type="date" class="form-control" id="CadastroDatanascimento" placeholder="Sua data de nascimento">
+                                <span asp-validation-for="Cadastro.DataNascimento" class="text-danger" id="DataNasCadastroWarning"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Cadastro.EmailouCelularCadastro">Email ou Celular</label>
+                                <input asp-for="Cadastro.EmailouCelularCadastro" type="text" class="form-control" id="CadastroEmailcelular" placeholder="Seu email ou celular">
+                                <span asp-validation-for="Cadastro.EmailouCelularCadastro" class="text-danger" id="EmailouCelCadastroWarning"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Cadastro.Senha">Senha</label>
+                                <input asp-for="Cadastro.Senha" type="password" class="form-control" id="CadastroSenha" placeholder="Digite uma senha">
+                                <span asp-validation-for="Cadastro.Senha" class="text-danger" id="SenhaCadastroWarning"></span>
+                            </div>
+                            <button id="btnCadastro" type="submit" class="btn btn-color-secundaria btn-block">Cadastrar-se</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <environment include="Development">
+        <script src="~/lib/jquery/dist/jquery.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+        <script src="~/js/site.js" asp-append-version="true"></script>
+    </environment>
+    <environment exclude="Development">
+        <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-3.3.1.min.js"
+                asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
+                asp-fallback-test="window.jQuery"
+                crossorigin="anonymous"
+                integrity="sha384-tsQFqpEReu7ZLhBV2VZlAu7zcOV+rXbYlF2cqB8txI/8aZajjp4Bqd+V6D5IgvKT">
+        </script>
+        <script src="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/bootstrap.min.js"
+                asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.min.js"
+                asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal"
+                crossorigin="anonymous"
+                integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa">
+        </script>
+        <script src="~/js/site.min.js" asp-append-version="true"></script>
+    </environment>
+    <script>
+        //Login
+        $("#EmailCelularLogin").focusout(function () {            
+            var id = this.id;
+            
+            $.fn.verificaEmailCelular(id);
+        });
+
+        $("#SenhaLogin").focusout(function () {
+            var id = this.id;
+
+            $.fn.varificarSenhaLenght(id);
+        });
+
+        $("#btnSubmit").click(function () {
+            var idemaillogin = "EmailCelularLogin";
+            var idsenhalogin = "SenhaLogin";
+
+            $.fn.verificaEmailCelular(idemaillogin);
+            $.fn.varificarSenhaLenght(idsenhalogin);
+
+            if (foneEmailInvalido || senhaInvalida) {
+                return false;
+            }
+        });
+
+        //Cadastro
+        $("#CadastroNome").focusout(function () {
+            var id = this.id;
+
+            $.fn.verificaNome(id);
+        });
+
+        $("#CadastroSobrenome").focusout(function () {
+            var id = this.id;
+
+            $.fn.verificaSobrenome(id);
+        });
+
+        $("#CadastroDatanascimento").focusout(function () {
+            var id = this.id;
+
+            $.fn.verificaDataNascimento(id);
+        });
+
+        $("#CadastroEmailcelular").focusout(function () {
+            var id = this.id;
+
+            $.fn.verificaEmailCelular(id);
+        });
+
+        $("#CadastroSenha").focusout(function () {
+            var id = this.id;
+
+            $.fn.varificarSenhaLenght(id);
+        });
+
+        $("#btnCadastro").click(function () {
+            var idnomecadastro = "CadastroNome";
+            var idsobrenomecadastro = "CadastroSobrenome";
+            var iddatanasccadastro = "CadastroDatanascimento";
+            var idemailcadastro = "CadastroEmailcelular";
+            var idsenhacadastro = "CadastroSenha";
+
+            $.fn.verificaNome(idnomecadastro);
+            $.fn.verificaSobrenome(idsobrenomecadastro);
+            $.fn.verificaDataNascimento(iddatanasccadastro);
+            $.fn.verificaEmailCelular(idemailcadastro);
+            $.fn.varificarSenhaLenght(idsenhacadastro);
+
+            if (foneEmailInvalido || senhaInvalida || nomeInvalido || sobrenomeInvalido || datanascimentoInvalida ) {
+                return false;
+            }
+        });
+
+    </script>
+</body>
+</html>

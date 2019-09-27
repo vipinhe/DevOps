@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+             x:Class="DevOps_APP.Views.LoginLoadingPopup"
+             CloseWhenBackgroundIsClicked="False">
+    <Frame BackgroundColor="#1c1c1c" CornerRadius="2"  OutlineColor="#3a3a3a" Opacity="0.7" VerticalOptions="Center" HorizontalOptions="Center" HeightRequest="120" WidthRequest="180">
+        <StackLayout VerticalOptions="Center" HorizontalOptions="Center">
+            <ActivityIndicator
+            Color="#CF9451"
+            IsRunning="True"
+            IsEnabled="True"/>
+
+            <StackLayout>
+                <Label Text="Carregando..." HorizontalTextAlignment="Center"/>
+            </StackLayout>
+        </StackLayout>
+    </Frame>
+</pages:PopupPage>
